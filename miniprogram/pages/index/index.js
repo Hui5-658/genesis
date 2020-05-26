@@ -16,57 +16,32 @@ Page({
     this.getnewdoc()
     console.log(this)
   },
-  onLoad:function(){
-    this.evaluate=this.selectComponent("#evaluate")
+  onLoad: function () {
+    this.evaluate = this.selectComponent("#evaluate")
     console.log(this)
   },
-  _error(){
+  _error() {
     console.log('你点击了取消')
   },
-  _success(){
+  _success() {
     console.log('你点击了确认')
     this.getnewdoc()
   },
-  /* 提交文案分数 */
-/*   submitstar: function (e) {
-    var that = this
-    console.log(e)
-    let id = e.currentTarget.dataset.id
-    console.log('评价得分' + this.data.score)
-    wx.cloud.database().collection('documents').doc(id).get({
-      success: res => {
-        that.setData({
-          sum: res.data.sum + this.data.score,
-          num: res.data.num + 1,
-          count: (res.data.sum + this.data.score) / (res.data.num + 1)
-        })
-        
-        wx.cloud.callFunction({
-          name: 'changecount',
-          data: {
-            id: id,
-            sum: that.data.sum,
-            num: that.data.num,
-            count: that.data.count
-          },
-          success: res => {
-            wx.showToast({
-              title: '评价成功',
-              icon: 'success',
-              duration: 1500,
-              mask: false,
-            });
-            that.onShow()
-            console.log(res)
-          },
-          fail: res => {
-            console.log(res)
-          }
-        })
-        console.log(that.data.count)
-      }, fail: console.error
-    })
-  }, */
+  /* 转发分享 */
+  onShareAppMessage: function (res) {
+    var that = this;
+    return {
+      title: '创e行小程序',
+      path: 'pages/index/index',
+      success: function (res) {
+        console.log("转发成功:" + JSON.stringify(res));
+        that.shareClick();
+      },
+      fail: function (res) {
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
+  },
   /* 数星星 */
   select: function (e) {
     var score = e.currentTarget.dataset.score
@@ -102,6 +77,9 @@ Page({
         }
         that.setData({
           newdoc: arr
+        })
+        that.setData({
+          count: count.toFixed(2)
         })
       },
       fail: console.error

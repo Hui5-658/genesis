@@ -1,0 +1,38 @@
+.userinfo-avatar {
+    margin-right: 150rpx;
+    height: 100rpx;
+    width: 100rpx;
+    display: block;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.userinfo {
+    border-radius: 50rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.show{
+    height: 150rpx;
+    padding: 15rpx;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25rpx;
+    margin: 20rpx;
+    border: 2rpx solid grey;
+    display: flex;
+    flex:2 1 auto;
+}
+.show :first-child{
+    width: 600rpx;
+}
+.delete {
+    width: 200rpx;
+    height: 80rpx;
+    background-color: red;
+    border-radius: 25rpx;
+}
+.upload{
+    background-color: greenyellow;
+    border-radius: 75rpx;
+}
